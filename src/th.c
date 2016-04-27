@@ -33,4 +33,5 @@ int main()
   // Print measurement
   printf("Current Temp: %5.1f\n",(temp / 10.0)) ;
 
+  return 0;
 }
