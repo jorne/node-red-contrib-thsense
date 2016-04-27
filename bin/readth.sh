@@ -2,4 +2,4 @@
 
 # Usage: readth.sh pin_number
 
-sudo th $1
+sudo ./th $1
