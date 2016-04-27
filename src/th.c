@@ -31,7 +31,7 @@ int main()
   fflush(stdout);
 
   // Print measurement
-  printf("Current Temp: %5.1f\n",(temp / 10.0)) ;
+  printf("Current Temp: %5.1f, RH: %5.1f\n",(temp / 10.0),(rh / 10.0)) ;
 
   return 0;
 }
