@@ -9,9 +9,9 @@
 
 int main(int argc, char *argv[])
 {
-  int pin, retries, temp, rh, loop, status;
+  int pin, temp, rh, loop, status;
 
-  pin = argv[1];
+  //pin = argv[1];
 
   // Setup WiringPi
   wiringPiSetup () ;
