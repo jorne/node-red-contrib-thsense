@@ -29,7 +29,8 @@ module.exports = function(RED) {
           return null;
         }
 
-        node.log(stdout);
+        // node.log(stdout);
+        msg.payload = JSON.parse(stdout);
         node.send(msg);
       });
     });
