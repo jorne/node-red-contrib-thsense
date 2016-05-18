@@ -7,9 +7,11 @@
 #define RHT03_PIN       7
 #define RETRIES         3
 
-int main()
+int main(int argc, char *argv[])
 {
-  int temp, rh, loop, status;
+  int pin, retries, temp, rh, loop, status;
+
+  pin = argv[1];
 
   // Setup WiringPi
   wiringPiSetup () ;
@@ -22,8 +24,6 @@ int main()
   status = readRHT03 (RHT03_PIN, &temp, &rh);
   while ((!status) && loop--)
   {
-      printf("-Retry-");
-      fflush(stdout);
       delay(3000);
       status = readRHT03 (RHT03_PIN, &temp, &rh);
   }
@@ -31,7 +31,7 @@ int main()
   fflush(stdout);
 
   // Print measurement
-  printf("Current Temp: %5.1f, RH: %5.1f\n",(temp / 10.0),(rh / 10.0)) ;
+  printf("{\"measurement\":{\"temperature\":%5.1f,\"relative_humidity\":%5.1f}}\n",(temp / 10.0),(rh / 10.0)) ;
 
   return 0;
 }
