@@ -16,5 +16,8 @@ node_modules
 
 .DS_Store
 
-// Node-RED user data directory for development runs
+# Node-RED user data directory for development runs
 .node-red
+
+# NPM packages
+releases

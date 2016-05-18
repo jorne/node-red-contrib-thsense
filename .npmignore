@@ -1,2 +1,9 @@
-// c source files
+# c source files
 src
+
+# Development related files
+.npmignore
+gulpfile.js
+
+# Node-RED user data directory for development run
+.node-red
