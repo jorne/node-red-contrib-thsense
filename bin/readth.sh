@@ -2,4 +2,6 @@
 
 # Usage: readth.sh pin_number
 
-sudo ./th $1
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TH="$DIR/th"
+sudo $TH $1
