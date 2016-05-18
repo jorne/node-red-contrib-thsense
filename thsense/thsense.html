@@ -3,23 +3,13 @@
 -->
 
 
-<!-- First, the content of the edit dialog is defined.                       -->
 
 <script type="text/x-red" data-template-name="thsense">
-
-   <!-- Each of the following divs creates a field in the edit dialog.       -->
-   <!-- Generally, there should be an input for each property of the node.   -->
-   <!-- The for and id attributes identify the corresponding property        -->
-   <!-- (with the 'node-input-' prefix).                                     -->
-   <!-- The available icon classes are defined Font Awesome Icons (FA Icons) -->
     <div class="form-row">
-        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
-        <input type="text" id="node-input-topic" placeholder="Topic">
+        <label for="node-input-pin"><i class="fa fa-circle"></i> GPIO Pin</label>
+        <input type="text" id="node-input-pin" placeholder="GPIO Pin">
     </div>
-
     <br/>
-    <!-- By convention, most nodes have a 'name' property. The following div -->
-    <!-- provides the necessary field. Should always be the last option      -->
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -27,36 +17,31 @@
 </script>
 
 
-<!-- Next, some simple help text is provided for the node.                   -->
 <script type="text/x-red" data-help-name="thsense">
-   <!-- data-help-name identifies the node type this help is for             -->
-   <!-- This content appears in the Info sidebar when a node is selected     -->
-   <!-- The first <p> is used as the pop-up tool tip when hovering over a    -->
-   <!-- node in the palette.                                                 -->
-   <p>Simple sample input node. Just sends a single message when it starts up.
-   This is not very useful.</p>
-   <p>Outputs an object called <b>msg</b> containing <b>msg.topic</b> and
-   <b>msg.payload</b>. msg.payload is a String.</p>
+   <p>Read temperature and relative humidity from a DTH22/RHT03 sensor connected to
+   Raspberry Pi GPIO.</p>
+   <p>On success, msg.payload will contain an object <b>measurement</b> with
+   properties <b>temperature</b> and <b>relative_humidity</b>.</p>
 </script>
 
-<!-- Finally, the node type is registered along with all of its properties   -->
-<!-- The example below shows a small subset of the properties that can be set-->
+
 <script type="text/javascript">
     RED.nodes.registerType('thsense',{
-        category: 'input',      // the palette category
-        defaults: {             // defines the editable properties of the node
-            name: {value:""},   //  along with default values.
-            topic: {value:"", required:true}
+        category: 'Raspberry Pi',
+        defaults: {
+            name: {value:''},
+            pin: {value:7, required:true}
         },
-        inputs:1,               // set the number of inputs - only 0 or 1
-        outputs:1,              // set the number of outputs - 0 to n
-        // set the icon (held in icons dir below where you save the node)
-        icon: "myicon.png",     // saved in  icons/myicon.png
-        label: function() {     // sets the default label contents
-            return this.name||this.topic||"thsense";
+        inputs: 1,
+        outputs: 1,
+        icon: 'rpi.png',
+        color: '#A6BBCF',
+        label: function() {
+            return this.name||'TH sensor (pin '+this.pin+')' ;
         },
         labelStyle: function() { // sets the class to apply to the label
             return this.name?"node_label_italic":"";
         }
+        paletteLabel: 'TH sensor'
     });
 </script>

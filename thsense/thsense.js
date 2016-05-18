@@ -5,7 +5,7 @@
 
 
 module.exports = function(RED) {
-  "use strict";
+  'use strict';
 
   var fs = require('fs');
   var child_process = require('child_process');
@@ -14,6 +14,7 @@ module.exports = function(RED) {
     RED.nodes.createNode(this,n);
 
     var node = this;
+    this.pin_number = n.pin;
 
     var readth = __dirname + '/../bin/readth.sh';
     fs.access(readth, fs.X_OK, (err) => {
@@ -21,9 +22,7 @@ module.exports = function(RED) {
     });
 
     this.on('input', function (msg) {
-      node.log(__dirname);
-
-      child_process.execFile(readth, (err, stdout, stderr) => {
+      child_process.execFile(readth, [node.pin_number], (err, stdout, stderr) => {
         if (err) {
           node.error(err);
           return null;
@@ -35,11 +34,11 @@ module.exports = function(RED) {
       });
     });
 
-    this.on("close", function() {
+    this.on('close', function() {
 
     });
   }
 
-  RED.nodes.registerType("thsense",ThsenseNode);
+  RED.nodes.registerType('thsense',ThsenseNode);
 
 }
