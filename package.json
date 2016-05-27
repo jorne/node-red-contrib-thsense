@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-thsense",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node-RED node that reads temperature and relative humidity from a DHT22 sensor.",
   "keywords": [
     "node-red",
