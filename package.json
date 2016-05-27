@@ -11,14 +11,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jorne/node-red-contrib-dhtsense.git"
+    "url": "git+https://github.com/jorne/node-red-contrib-thsense.git"
   },
   "author": "Jorne Roefs",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jorne/node-red-contrib-dhtsense/issues"
+    "url": "https://github.com/jorne/node-red-contrib-thsense/issues"
   },
-  "homepage": "https://github.com/jorne/node-red-contrib-dhtsense#readme",
+  "homepage": "https://github.com/jorne/node-red-contrib-thsense#readme",
   "node-red": {
     "nodes": {
       "thsense": "thsense/thsense.js"
