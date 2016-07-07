@@ -22,15 +22,26 @@ module.exports = function(RED) {
     });
 
     this.on('input', function (msg) {
+      node.log('Executing ' + readth + ' ' + node.pin_number);
       child_process.execFile(readth, [node.pin_number], (err, stdout, stderr) => {
         if (err) {
           node.error(err);
           return null;
         }
 
+        try {
+          msg.payload = JSON.parse(stdout);
+          node.send(msg);
+        }
+        catch (e) {
+          node.error('Invalid reading from sensor', e);
+          node.log('TH Sensor debug: ' + stderr);
+        }
+        finally {
+          node.log('TH Sensor data: ' + stdout);
+        }
         // node.log(stdout);
-        msg.payload = JSON.parse(stdout);
-        node.send(msg);
+        //msg.payload = JSON.parse(stdout);
       });
     });
 
